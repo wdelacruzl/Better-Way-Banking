@@ -21,6 +21,14 @@
         </h1>
          <!-- End of Form Header  -->
 
+        <!--Display Message-->
+         <c:if test="${requestScope.success != null}">
+            <div class="alert alert-success text-center border border-success">
+                <b>${requestScope.success}</b>
+            </div>
+         </c:if>
+        <!-- End of Display Message-->
+
          <!-- Login Form -->
             <form action="" class="login-form">
 

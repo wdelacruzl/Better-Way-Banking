@@ -26,6 +26,22 @@
         </h1>
          <!-- End of Form Header  -->
 
+        <!--Display Message-->
+         <c:if test="${requestScope.passwordMisMatch != null}">
+            <div class="alert alert-danger text-center border border-danger">
+                <b>${requestScope.passwordMisMatch}</b>
+            </div>
+         </c:if>
+        <!-- End of Display Message-->
+
+        <!--Display Message-->
+         <c:if test="${requestScope.success != null}">
+            <div class="alert alert-success text-center border border-success">
+                <b>${requestScope.success}</b>
+            </div>
+         </c:if>
+        <!-- End of Display Message-->
+
          <!-- Registration Form -->      <!-- modelAttribute same as the one in the advisorController binding form fields to the model-->
             <form:form  action="/register" class="reg-form" modelAttribute="registerUser"> <!-- form:form(form tags for spring)-->
                 <!-- Row 1 -->

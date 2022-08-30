@@ -2,7 +2,7 @@ package com.demo_bank_v1.helpers;
 
 public class HTML {
 
-    public static String htmlEmailTemplate(String token, String code){
+    public static String htmlEmailTemplate(String token, int code){
         //Verify Account URL:
         String url = "http://127.0.0.1:8070/verify?token=" + token + "&code=" + code;
 
@@ -101,7 +101,7 @@ public class HTML {
                 "</body>\n" +
                 "\n" +
                 "</html>";
-        return "";
+        return emailTemplate;
     }
 
 }

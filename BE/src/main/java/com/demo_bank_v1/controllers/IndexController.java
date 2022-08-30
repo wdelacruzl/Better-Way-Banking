@@ -1,12 +1,17 @@
 package com.demo_bank_v1.controllers;
 
+import com.demo_bank_v1.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class IndexController {
 
+    @Autowired
+    private UserRepository userRepository;
     @GetMapping("/")
     public ModelAndView getIndex() {
         ModelAndView getIndexPage = new ModelAndView("index");
@@ -40,10 +45,26 @@ public class IndexController {
     }
 
     @GetMapping("/verify")
-    public ModelAndView getVerify(){
-        ModelAndView getVerifyPage = new ModelAndView("login");
-        getVerifyPage.addObject("PageTitle", "Verify");
-        System.out.println("In Error Page Controller");
+    public ModelAndView getVerify(@RequestParam("token") String token, @RequestParam("code") String code){
+        // Set View
+        ModelAndView getVerifyPage;
+
+        // Get token in database:
+        String dbToken = userRepository.checkToken(token);
+
+        // Check if Token is valid
+        if(dbToken == null){
+            getVerifyPage = new ModelAndView("error");
+            getVerifyPage.addObject("error", "This Session Has Expired");
+            return getVerifyPage;
+        }
+        //Update and verify Account
+        userRepository.verifyAccount(token,code);
+
+        getVerifyPage = new ModelAndView("login");
+
+        getVerifyPage.addObject("success", "Account Verified Successfully, Please Log In");
+        System.out.println("In Verify Account Controller");
         return getVerifyPage;
     }
 

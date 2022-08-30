@@ -41,10 +41,13 @@
         <div class="card-body">
             <!-- Card Text -->
             <p class="card-text">
-                Lorem ipsum dolor, sit amet consectetur
-                adipisicing elit. Expedita, debitis placeat
-                soluta doloribus doloremque dignissimos labore
-                consectetur sint eveniet voluptas.
+                        <!--Display Message-->
+                         <c:if test="${requestScope.error != null}">
+                            <div class="alert alert-danger text-center border border-danger">
+                                <b>${requestScope.error}</b>
+                            </div>
+                         </c:if>
+                        <!-- End of Display Message-->
             </p>
             <!-- End of Card Text -->
             <hr>
