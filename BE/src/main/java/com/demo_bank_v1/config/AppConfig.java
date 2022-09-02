@@ -1,8 +1,10 @@
 package com.demo_bank_v1.config;
 
+import com.demo_bank_v1.interceptors.AppInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -26,5 +28,11 @@ public class AppConfig extends WebMvcConfigurationSupport{
         jspViewResolver.setViewClass(JstlView.class);
 
         return jspViewResolver;
+    }
+    //End of view Resolver
+
+    @Override
+    protected void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new AppInterceptor()).addPathPatterns("/app/*");
     }
 }

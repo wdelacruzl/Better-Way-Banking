@@ -11,6 +11,17 @@ import javax.transaction.Transactional;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Integer> {
+    @Query(value="SELECT email FROM users WHERE email = :email", nativeQuery = true)
+    String getUserEmail(@Param("email") String email);
+
+    @Query(value="SELECT password FROM users WHERE email = :email", nativeQuery = true)
+    String getUserPassword(@Param("email") String email);
+
+    @Query(value="SELECT verified FROM users WHERE email = :email", nativeQuery = true)
+    int isVerified(@Param("email") String email);
+
+    @Query(value="SELECT * FROM users WHERE email = :email", nativeQuery = true)
+    User getUserDetails(@Param("email")String email);
 
     @Modifying
     @Query(value = "INSERT INTO users (first_name, last_name, email, password, token, code) VALUES" +

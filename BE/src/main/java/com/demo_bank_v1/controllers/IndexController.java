@@ -20,22 +20,6 @@ public class IndexController {
         return getIndexPage;
     }
 
-    @GetMapping("/login")
-    public ModelAndView getLogin(){
-        ModelAndView getLoginPage = new ModelAndView("login");
-        getLoginPage.addObject("PageTitle", "Login");
-        System.out.println("In Login Page Controller");
-        return getLoginPage;
-    }
-
-    @GetMapping("/register")
-    public ModelAndView getRegister(){
-        ModelAndView getRegisterPage = new ModelAndView("register");
-        getRegisterPage.addObject("PageTitle", "Register");
-        System.out.println("In Register Page Controller");
-        return getRegisterPage;
-    }
-
     @GetMapping("/error")
     public ModelAndView getError(){
         ModelAndView getErrorPage = new ModelAndView("error");

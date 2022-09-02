@@ -25,13 +25,13 @@ public class RegisterController {
     @Autowired
     private UserRepository userRepository;
 
-//    @GetMapping("/register")
-//    public ModelAndView getRegister(){
-//        ModelAndView getRegisterPage = new ModelAndView("register");
-//        getRegisterPage.addObject("PageTitle", "Register");
-//        System.out.println("In Register Page Controller");
-//        return getRegisterPage;
-//    }
+    @GetMapping("/register")
+    public ModelAndView getRegister(){
+        ModelAndView getRegisterPage = new ModelAndView("register");
+        getRegisterPage.addObject("PageTitle", "Register");
+        System.out.println("In Register Page Controller");
+        return getRegisterPage;
+    }
 
     @PostMapping("/register")
     public ModelAndView register(@Valid @ModelAttribute("registerUser")
